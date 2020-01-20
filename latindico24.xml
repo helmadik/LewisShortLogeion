@@ -1,0 +1,152 @@
+<tei.2>
+
+  <teiHeader type="text" status="new">
+   <fileDesc>
+    <titleStmt>
+ 	<title>A Latin Dictionary</title>
+ 	<title type="sub">Machine readable text</title>
+ 	<author>Charlton T. Lewis</author>
+ 	<author>Charles Short</author>
+    <sponsor>Perseus Project, Tufts University</sponsor>
+ 		<principal>Gregory Crane</principal>
+ 		<respStmt>
+ 		<resp>Prepared under the supervision of</resp>
+ 		<name>Lisa Cerrato</name>
+ 		<name>William Merrill</name>
+ 		<name>Elli Mylonas</name>
+ 		<name>David Smith</name>
+ 		</respStmt>
+    <funder n="org:NEH">The National Endowment for the Humanities</funder>
+    </titleStmt>
+ 	<publicationStmt>
+ 		<publisher>Trustees of Tufts University</publisher>
+ 		<pubPlace>Medford, MA</pubPlace>
+ 		<authority>Perseus Project</authority>
+ 		</publicationStmt>
+    <sourceDesc default="NO">
+ 	<biblStruct default="NO">
+ 	 <monogr>
+ 	  <title>A Latin Dictionary</title>
+ 	  <title>Founded on Andrews' edition of Freund's Latin dictionary</title>
+ 	  <respStmt>
+ 	   <resp>revised, enlarged, and in great part rewritten by</resp>
+ 	   <name>Charlton T. Lewis, Ph.D.</name>
+ 	   <resp>and</resp>
+ 	   <name>Charles Short, LL.D.</name>
+ 	  </respStmt>
+ 	  <imprint>
+ 	   <pubPlace>Oxford</pubPlace>
+ 	   <publisher>Clarendon Press</publisher>
+ 	   <date>1879</date>
+ 	  </imprint>
+ 	 </monogr>
+ 	 <idno type="ISBN">0198642016</idno>
+ 	</biblStruct>
+    </sourceDesc>
+   </fileDesc>
+
+   <encodingDesc>
+    <refsDecl doctype="TEI.2">
+ 	<state unit="entry" n="chunk" />
+    </refsDecl>
+    <refsDecl doctype="TEI.2">
+ 	<state unit="alphabetic letter" />
+ 	<state unit="entry" />
+    </refsDecl>
+   </encodingDesc>
+
+   <profileDesc>
+    <langUsage default="NO">
+ 	<language id="en">English
+ 	</language><language id="la">Latin
+ 	</language><language id="greek">Greek
+    </language></langUsage>
+   </profileDesc>
+
+   <revisionDesc>
+    <change><date>4 December 2000</date>
+ 	<respStmt><name>DAS</name><resp>ed.</resp></respStmt>
+ 	<item>
+ $Log: ls.xml,v $
+ Revision 1.3 2004/12/14 19:21:53 packel
+ fixed spurious tag caused by the previous log msg; added ids to entries/senses
+
+ Revision 1.2 2004/12/10 15:29:26 packel
+ removed spurious item tags
+
+ Revision 1.1 2004/12/09 15:39:07 packel
+ initial revision; converted to XML, ids added
+
+ Revision 1.9 2004/10/08 13:02:14 mimno
+ inous -&gt; inopus, bad tag in moera
+
+ Revision 1.8 2004/10/07 19:29:35 packel
+ rid entry keys of †s
+
+ Revision 1.7 2004/10/07 14:01:21 packel
+ caught an ë with no trailing ;
+
+ Revision 1.6 2004/10/07 13:49:33 packel
+ fixed character entities in entry keys
+
+ Revision 1.5 2004/09/21 15:44:45 packel
+ numbered lots of lingering duplicate entries (all of them, we hope)
+
+ Revision 1.4 2004/09/01 20:45:17 packel
+ Set a couple hundred mislabeled keys to the values in their orth tags (e.g.,
+ "ex" to "exporrigo").
+
+ Revision 1.3 2004/06/15 19:20:19 lcerrato
+ 1. beluatis: marked (bell-) section
+ 2. orior: mjuria to injuria
+ 3. verto: aller to alter
+ 4. latus: sems to senis
+ 5. k: scund to sound
+ 6. faex: less to lees
+ 7. siren: fuei to fuci
+ 8. obligatio: piedging to pledging
+ 9. anceps: hazaraous to hazardous
+ 10. praeceptum: monitig to monitis
+ 11. crgasterium to ergasterium
+ 12. abductio: foroible to forcible
+ 13. animus: an mus to animus
+ 14. parastas: delermine to determine
+ 15. obsequium: comptiance to compliance
+ 16. gloria: laddis to laudis
+
+ Revision 1.2 2004/06/15 17:30:40 amahoney
+ ABO for Nepos distinguishes lives, for abbreviations
+
+ Revision 1.1 2003/01/09 22:57:38 amahoney
+ make these the canonical forms, no longer generated
+
+ Revision 1.3 2001/04/20 22:11:35 dasmith
+ Added funder.
+
+ Revision 1.2 2000/12/08 16:40:11 dasmith
+ Edited out ampersand.
+
+ Revision 1.1 2000/12/07 20:15:37 dasmith
+ Moved from special ls directory.
+
+ Revision 1.3 2000/12/05 17:38:44 dasmith
+ Replace han with arrow.
+
+ Revision 1.2 2000/12/05 01:08:17 dasmith
+ Added ad-hoc hand entity.
+
+ Revision 1.1 2000/12/04 21:40:47 dasmith
+ First cut at header to Lewis &amp; Short.
+
+ </item></change></revisionDesc></teiHeader>
+<text>
+<body>
+<div0 type="alphabetic letter" n="Y" org="uniform" sample="complete">
+ <head lang="la">Y</head>
+
+<div1 id="crossY" orig_id="n51504" key="Y" opt="n"><head extent="full" lang="la" opt="n" orth_orig="Y">Y</head>, <orth type="alt" extent="full" lang="la" opt="n">y</orth>, <itype opt="n">a Greek letter introduced at a late period for words borrowed from the Greek</itype>, the place of the Greek <foreign lang="greek">Υ</foreign> being previously filled by U (i. e. V, which graphically originated from <foreign lang="greek">Υ</foreign>; v. the letters U and V). Thus, according to the express testimony of Cicero (Or. 48, 160), Ennius always wrote Burrus for Pyrrhus, and Bruges for Phryges; and so the words which were identical in Greek and Latin in the oldest period of the language have either preserved <sense id="n51504.0" n="I" level="1" opt="n"><i>u</i> where the Greek has <foreign lang="greek">υ</foreign>, as bucina and <foreign lang="greek">βυκάνη</foreign>, cubus and <foreign lang="greek">κύβος</foreign>, fuga and <foreign lang="greek">φυγή</foreign>, mus and <foreign lang="greek">μῦς</foreign> et saep.; or this <i>u</i> has given place to <i>i</i>, as in lacrima, formerly lacruma, = <foreign lang="greek">δάκρυμα</foreign>. Sometimes, also, <i>o</i> took the place of the <foreign lang="greek">υ</foreign>; cf. mola and <foreign lang="greek">μύλη</foreign>, sorex and <foreign lang="greek">ὕραξ</foreign>, folium and <foreign lang="greek">φύλλον</foreign>, and, shortening a long vowel, ancŏra and <foreign lang="greek">ἄγκυρα</foreign>, like lacrĭma and <foreign lang="greek">δάκρῦμα</foreign>. In Cicero's time <i>y</i> seems to have been already in use; but its application was restricted to foreign words, and hence the spellings Sylla, Tybris, pyrum, satyra, etc., are to be rejected. <cb n="Z." /></sense></div1>
+
+ </div0>
+</body>
+</text>
+</tei.2>
