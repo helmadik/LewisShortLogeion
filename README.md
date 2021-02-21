@@ -8,3 +8,5 @@ but some editing has been done over the years.
 These files have now seen a major round of editing. Many thanks to Josh Dillon for modernizing all the Terence citations!
 
 Easter egg: find the correct citations where there is a 'not found' comment:-) Volunteers to deal with fragmentary authors and other infelicities still very much welcome. 
+
+Added Feb. 2021, Authors & Works abbreviations in a txt file. 
