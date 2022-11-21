@@ -56,6 +56,7 @@ def main():
                 newLine = captNum(act, scene, line)
             elif play == '006':
                 print('Cas., Casina.')
+                newLine = casNum(act, scene, line)
             elif play == '007':
                 print('Cist., Cistellaria.')
             elif play == '008':
@@ -347,6 +348,64 @@ def captNum(act, scene, line):
             lineNum = line + 977
         elif scene == 4:
             lineNum = line + 997
+    return lineNum
+
+def casNum(act, scene, line):
+    lineNum = 0
+    if act == 0:
+        line = line.strip("prol.")
+        line = int(line)
+        lineNum = line
+    elif act == 1:
+        lineNum = line + 88
+    elif act == 2:
+        if scene == 1:
+            lineNum = line + 143
+        elif scene == 2:
+            lineNum = line + 164
+        elif scene == 3:
+            lineNum = line + 216
+        elif scene == 4:
+            lineNum = line + 278
+        elif scene == 5:
+            lineNum = line + 308
+        elif scene == 6:
+            lineNum = line + 352
+        elif scene == 7:
+            lineNum = line + 423
+        elif scene == 8:
+            lineNum = line + 436
+    elif act == 3:
+        if scene == 1:
+            lineNum = line + 514
+        elif scene == 2:
+            lineNum = line + 530
+        elif scene == 3:
+            lineNum = line + 562
+        elif scene == 4:
+            lineNum = line + 590
+        elif scene == 5:
+            lineNum = line + 620
+        elif scene == 6:
+            lineNum = line + 719
+    elif act == 4:
+        if scene == 1:
+            lineNum = line + 758
+        elif scene == 2:
+            lineNum = line + 779
+        elif scene == 3:
+            lineNum = line + 797
+        elif scene == 4:
+            lineNum = line + 813
+    elif act == 5:
+        if scene == 1:
+            lineNum = line + 854
+        elif scene == 2:
+            lineNum = line + 874
+        elif scene == 3:
+            lineNum = line + 936
+        elif scene == 4:
+            lineNum = line + 962
     return lineNum
 
 ## input file
