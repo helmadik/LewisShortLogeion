@@ -53,6 +53,7 @@ def main():
                 newLine = baccNum(act, scene, line)
             elif play == '005':
                 print('Capt., Captivi.')
+                newLine = captNum(act, scene, line)
             elif play == '006':
                 print('Cas., Casina.')
             elif play == '007':
@@ -297,6 +298,55 @@ def baccNum(act, scene, line):
             lineNum = line + 1086
         elif scene == 2:
             lineNum = line + 1119
+    return lineNum
+
+def captNum(act, scene, line):
+    lineNum = 0
+    if act == 0:
+        line = line.strip("prol.")
+        line = int(line)
+        lineNum = line
+    elif act == 1:
+        if scene == 1:
+            lineNum = line + 68
+        elif scene == 2:
+            lineNum = line + 109
+    elif act == 2:
+        if scene == 1:
+            lineNum = line + 194
+        elif scene == 2:
+            lineNum = line + 250
+        elif scene == 3:
+            lineNum = line + 360
+    elif act == 3:
+        if scene == 1:
+            lineNum = line + 460
+        elif scene == 2:
+            lineNum = line + 497
+        elif scene == 3:
+            lineNum = line + 515
+        elif scene == 4:
+            lineNum = line + 532
+        elif scene == 5:
+            lineNum = line + 658
+    elif act == 4:
+        if scene == 1:
+            lineNum = line + 767
+        elif scene == 2:
+            lineNum = line + 780
+        elif scene == 3:
+            lineNum = line + 900
+        elif scene == 4:
+            lineNum = line + 908
+    elif act == 5:
+        if scene == 1:
+            lineNum = line + 921
+        elif scene == 2:
+            lineNum = line + 953
+        elif scene == 3:
+            lineNum = line + 977
+        elif scene == 4:
+            lineNum = line + 997
     return lineNum
 
 ## input file
