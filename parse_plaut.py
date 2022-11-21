@@ -44,8 +44,10 @@ def main():
                 newLine = amphNum(act, scene, line)
             elif play == '002':
                 print('As. or Asin., Asinaria.')
+                newLine = asNum(act, scene, line)
             elif play == '003':
                 print('Aul., Aulularia.')
+                newLine = aulNum(act, scene, line)
             elif play == '004':
                 print('Bacch., Bacchides.')
             elif play == '005':
@@ -87,45 +89,43 @@ def main():
 
 def amphNum(act, scene, line):
     lineNum = 0
-    # calculate
     if act == 0:
-        #do x
         line = line.strip("prol.")
         line = int(line)
         lineNum = line
     elif act == 1:
         if scene == 1:
-            lineNum = line + 153
+            lineNum = line + 152
         elif scene == 2:
-            lineNum = line + 463
+            lineNum = line + 462
         elif scene == 3:
-            lineNum = line + 499
+            lineNum = line + 498
     elif act == 2:
         if scene == 1:
-            lineNum = line + 551
+            lineNum = line + 550
         elif scene == 2:
-            lineNum = line + 633
+            lineNum = line + 632
     elif act == 3:
         if scene == 1:
-            lineNum = line + 861
+            lineNum = line + 860
         elif scene == 2:
-            lineNum = line + 882
+            lineNum = line + 881
         elif scene == 3:
-            lineNum = line + 956
+            lineNum = line + 955
         elif scene == 4:
-            lineNum = line + 984
+            lineNum = line + 983
     elif act == 4:
         if scene == 1:
-            lineNum = line + 1009
+            lineNum = line + 1008
         elif scene == 2:
-            lineNum = line + 1021
+            lineNum = line + 1020
         elif scene == 3:
-            lineNum = line + 1035
+            lineNum = line + 1034
     elif act == 5:
         if scene == 1:
-            lineNum = line + 1053
+            lineNum = line + 1052
         elif scene == 2:
-            lineNum = line + 1131
+            lineNum = line + 1130
     return lineNum
 
 def asNum(act, scene, line):
@@ -136,40 +136,106 @@ def asNum(act, scene, line):
         lineNum = line
     elif act == 1:
         if scene == 1:
-            lineNum = line + 16
+            lineNum = line + 15
         elif scene == 2:
-            lineNum = line + 127
+            lineNum = line + 126
         elif scene == 3:
-            lineNum = line + 153
+            lineNum = line + 152
     elif act == 2:
         if scene == 1:
-            lineNum = line + 249
+            lineNum = line + 248
         elif scene == 2:
-            lineNum = line + 257
+            lineNum = line + 256
         elif scene == 3:
-            lineNum = line + 381
+            lineNum = line + 380
         elif scene == 4:
-            lineNum = line + 407
+            lineNum = line + 406
     elif act == 3:
         if scene == 1:
-            lineNum = line + 504
+            lineNum = line + 503
         elif scene == 2:
-            lineNum = line + 545
+            lineNum = line + 544
         elif scene == 3:
-            lineNum = line + 591
+            lineNum = line + 590
     elif act == 4:
         if scene == 1:
-            lineNum = line + 746
+            lineNum = line + 745
         elif scene == 2:
-            lineNum = line + 810
+            lineNum = line + 809
     elif act == 5:
         if scene == 1:
-            lineNum = line + 828
+            lineNum = line + 827
         elif scene == 2:
-            lineNum = line + 851
+            lineNum = line + 850
     return lineNum
 
-
+def aulNum(act, scene, line):
+    lineNum = 0
+    if act == 0:
+        line = line.strip("prol.")
+        line = int(line)
+        lineNum = line
+    elif act == 1:
+        if scene == 1:
+            lineNum = line + 39
+        elif scene == 2:
+            lineNum = line + 78
+    elif act == 2:
+        if scene == 1:
+            lineNum = line + 119
+        elif scene == 2:
+            lineNum = line + 177
+        elif scene == 3:
+            lineNum = line + 267
+        elif scene == 4:
+            lineNum = line + 279
+        elif scene == 5:
+            lineNum = line + 326
+        elif scene == 6:
+            lineNum = line + 349
+        elif scene == 7:
+            lineNum = line + 362
+        elif scene == 8:
+            lineNum = line + 370
+        elif scene == 9:
+            lineNum = line + 397
+    elif act == 3:
+        if scene == 1:
+            lineNum = line + 405
+        elif scene == 2:
+            lineNum = line + 414
+        elif scene == 3:
+            lineNum = line + 448
+        elif scene == 4:
+            lineNum = line + 459
+        elif scene == 5:
+            lineNum = line + 474
+        elif scene == 6:
+            lineNum = line + 536
+    elif act == 4:
+        if scene == 1:
+            lineNum = line + 586
+        elif scene == 2:
+            lineNum = line + 607
+        elif scene == 3:
+            lineNum = line + 623
+        elif scene == 4:
+            lineNum = line + 627
+        elif scene == 5:
+            lineNum = line + 660
+        elif scene == 6:
+            lineNum = line + 666
+        elif scene == 7:
+            lineNum = line + 681
+        elif scene == 8:
+            lineNum = line + 700
+        elif scene == 9:
+            lineNum = line + 712
+        elif scene == 10:
+            lineNum = line + 730
+    elif act == 5:
+        lineNum = line + 807
+    return lineNum
 
 ## input file
 
