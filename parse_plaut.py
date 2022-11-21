@@ -50,6 +50,7 @@ def main():
                 newLine = aulNum(act, scene, line)
             elif play == '004':
                 print('Bacch., Bacchides.')
+                newLine = baccNum(act, scene, line)
             elif play == '005':
                 print('Capt., Captivi.')
             elif play == '006':
@@ -235,6 +236,67 @@ def aulNum(act, scene, line):
             lineNum = line + 730
     elif act == 5:
         lineNum = line + 807
+    return lineNum
+
+def baccNum(act, scene, line):
+    lineNum = 0
+    if act == 0:
+        line = line.strip("prol.")
+        line = int(line)
+        lineNum = line
+    elif act == 1:
+        if scene == 1:
+            lineNum = line + 34
+        elif scene == 2:
+            lineNum = line + 108
+    elif act == 2:
+        if scene == 1:
+            lineNum = line + 169
+        elif scene == 2:
+            lineNum = line + 178
+        elif scene == 3:
+            lineNum = line + 234
+    elif act == 3:
+        if scene == 1:
+            lineNum = line + 367
+        elif scene == 2:
+            lineNum = line + 384
+        elif scene == 3:
+            lineNum = line + 404
+        elif scene == 4:
+            lineNum = line + 499
+        elif scene == 5:
+            lineNum = line + 525
+        elif scene == 6:
+            lineNum = line + 529
+    elif act == 4:
+        if scene == 1:
+            lineNum = line + 572
+        elif scene == 2:
+            lineNum = line + 582
+        elif scene == 3:
+            lineNum = line + 611
+        elif scene == 4:
+            lineNum = line + 639
+        elif scene == 5:
+            lineNum = line + 760
+        elif scene == 6:
+            lineNum = line + 769
+        elif scene == 7:
+            lineNum = line + 798
+        elif scene == 8:
+            lineNum = line + 841
+        elif scene == 9:
+            lineNum = line + 924
+        elif scene == 10:
+            lineNum = line + 978
+        elif scene == 11:
+            lineNum = line + 1075
+    elif act == 5:
+        if scene == 1:
+            lineNum = line + 1086
+        elif scene == 2:
+            lineNum = line + 1119
     return lineNum
 
 ## input file
