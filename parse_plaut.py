@@ -126,11 +126,52 @@ def amphNum(act, scene, line):
             lineNum = line + 1053
         elif scene == 2:
             lineNum = line + 1131
+    return lineNum
 
+def asNum(act, scene, line):
+    lineNum = 0
+    if act == 0:
+        line = line.strip("prol.")
+        line = int(line)
+        lineNum = line
+    elif act == 1:
+        if scene == 1:
+            lineNum = line + 16
+        elif scene == 2:
+            lineNum = line + 127
+        elif scene == 3:
+            lineNum = line + 153
+    elif act == 2:
+        if scene == 1:
+            lineNum = line + 249
+        elif scene == 2:
+            lineNum = line + 257
+        elif scene == 3:
+            lineNum = line + 381
+        elif scene == 4:
+            lineNum = line + 407
+    elif act == 3:
+        if scene == 1:
+            lineNum = line + 504
+        elif scene == 2:
+            lineNum = line + 545
+        elif scene == 3:
+            lineNum = line + 591
+    elif act == 4:
+        if scene == 1:
+            lineNum = line + 746
+        elif scene == 2:
+            lineNum = line + 810
+    elif act == 5:
+        if scene == 1:
+            lineNum = line + 828
+        elif scene == 2:
+            lineNum = line + 851
     return lineNum
 
 
-# input file
+
+## input file
 
 # parse file as xml
 
