@@ -26,6 +26,8 @@ def main():
             continue
         authPlay = tokens[2]
         apToks = authPlay.split(',')
+        if len(apToks) < 3:
+            continue
         author = apToks[1]
         play = apToks[2]
         newLine = 0
@@ -33,15 +35,15 @@ def main():
             #print(tokens)
             if len(tokens) == 6:
                 act = int(re.sub(r'[^0-9]', '', tokens[3]))
-                scene = int(tokens[4])
-                line = int(tokens[5])
+                scene = int(re.sub(r'[^0-9]', '', tokens[4]))
+                line = int(re.sub(r'[^0-9]', '', tokens[5]))
             elif len(tokens) == 5:
-                if tokens[3] == 'prol':
+                if re.fullmatch(r'[^0-9]', tokens[3]) == None:
                     act = 0
                 else:
                     act = int(re.sub(r'[^0-9]', '', tokens[3]))
                 scene = 0
-                line = int(tokens[4])
+                line = int(re.sub(r'[^0-9]', '', tokens[4]))
             elif len(tokens) == 4:
                 act = 0
                 scene = 0
@@ -119,6 +121,8 @@ def main():
             entry.setAttribute("n", newlink)
             #print(entry.getAttribute("n"))
             #print(entry.childNodes[-1].data)
+            if entry.childNodes[-1].nodeType != md.Node.TEXT_NODE:
+                continue
             newdata = entry.childNodes[-1].data + ' (' + str(newLine) + ')'
             #print(newdata)
             entry.childNodes[-1].data = newdata
