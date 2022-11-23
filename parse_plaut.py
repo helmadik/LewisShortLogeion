@@ -22,7 +22,6 @@ def main():
     for entry in bibliography:
         link = entry.getAttribute("n")
         tokens = link.split(':')
-        print(tokens)
         if len(tokens) < 4:
             continue
         authPlay = tokens[2]
@@ -31,6 +30,7 @@ def main():
         play = apToks[2]
         newLine = 0
         if author == '0119':
+            print(tokens)
             if len(tokens) == 6:
                 act = int(re.sub(r'[^0-9]', '', tokens[3]))
                 scene = int(tokens[4])
@@ -113,6 +113,24 @@ def main():
             # parse act/scene/line
             # call helper function that converts line number for a given play
             # update link and entry text
+    
+            newlink = tokens[0] + ':' + tokens[1] + ':' + tokens[2] + ':' + str(newLine)
+            print(newlink)
+            entry.setAttribute("n", newlink)
+            print(entry.getAttribute("n"))
+            print(entry.childNodes[-1].data)
+            newdata = entry.childNodes[-1].data + ' (' + str(newLine) + ')'
+            print(newdata)
+            entry.childNodes[-1].data = newdata
+            print(entry.childNodes[-1].data)
+
+    with open(file_name, "w") as f:
+        f.write(file.toxml())
+        f.close()
+    
+    another = input("Would you like to parse another file? Type YES if so.\n")
+    if another == 'YES':
+        main()
 
 def amphNum(act, scene, line):
     lineNum = 0
