@@ -1,5 +1,6 @@
 import xml.dom.minidom as md
 import io
+import re
 # Script to resolve antiquated line identification scheme in Plautus references.
 # Function should take in a file, read it (prob should use helper function),
 # and then RegEx find every <bibl> tag with an author subtag of "Plaut."
@@ -16,29 +17,38 @@ def main():
 
     print(file.firstChild.tagName)
 
-    bibliography = file.getElementByTagName( "bibl" )
+    bibliography = file.getElementsByTagName( "bibl" )
 
     for entry in bibliography:
         link = entry.getAttribute("n")
         tokens = link.split(':')
+        print(tokens)
+        if len(tokens) < 4:
+            continue
         authPlay = tokens[2]
         apToks = authPlay.split(',')
         author = apToks[1]
         play = apToks[2]
-        if tokens.len() == 6:
-            act = int(tokens[3])
-            scene = int(tokens[4])
-            line = int(tokens[5])
-        elif tokens.len() == 5:
-            act = int(tokens[3])
-            scene = 0
-            line = int(tokens[4])
-        elif tokens.len() == 4:
-            act = 0
-            scene = 0
-            line = tokens[3]
         newLine = 0
         if author == '0119':
+            if len(tokens) == 6:
+                act = int(re.sub(r'[^0-9]', '', tokens[3]))
+                scene = int(tokens[4])
+                line = int(tokens[5])
+            elif len(tokens) == 5:
+                if tokens[3] == 'prol':
+                    act = 0
+                else:
+                    act = int(re.sub(r'[^0-9]', '', tokens[3]))
+                scene = 0
+                line = int(tokens[4])
+            elif len(tokens) == 4:
+                act = 0
+                scene = 0
+                if tokens[3] == '':
+                    continue
+                else:
+                    line = int(re.sub(r'[^0-9]', '', tokens[3]))
             if play == '001':
                 print('Am. or Amph., Amphitruo.')
                 newLine = amphNum(act, scene, line)
@@ -107,8 +117,6 @@ def main():
 def amphNum(act, scene, line):
     lineNum = 0
     if act == 0:
-        line = line.strip("prol.")
-        line = int(line)
         lineNum = line
     elif act == 1:
         if scene == 1:
@@ -148,8 +156,6 @@ def amphNum(act, scene, line):
 def asNum(act, scene, line):
     lineNum = 0
     if act == 0:
-        line = line.strip("prol.")
-        line = int(line)
         lineNum = line
     elif act == 1:
         if scene == 1:
@@ -189,8 +195,6 @@ def asNum(act, scene, line):
 def aulNum(act, scene, line):
     lineNum = 0
     if act == 0:
-        line = line.strip("prol.")
-        line = int(line)
         lineNum = line
     elif act == 1:
         if scene == 1:
@@ -257,8 +261,6 @@ def aulNum(act, scene, line):
 def baccNum(act, scene, line):
     lineNum = 0
     if act == 0:
-        line = line.strip("prol.")
-        line = int(line)
         lineNum = line
     elif act == 1:
         if scene == 1:
@@ -318,8 +320,6 @@ def baccNum(act, scene, line):
 def captNum(act, scene, line):
     lineNum = 0
     if act == 0:
-        line = line.strip("prol.")
-        line = int(line)
         lineNum = line
     elif act == 1:
         if scene == 1:
@@ -367,8 +367,6 @@ def captNum(act, scene, line):
 def casNum(act, scene, line):
     lineNum = 0
     if act == 0:
-        line = line.strip("prol.")
-        line = int(line)
         lineNum = line
     elif act == 1:
         lineNum = line + 88
@@ -548,8 +546,6 @@ def epidNum(act, scene, line):
 def menNum(act, scene, line):
     lineNum = 0
     if act == 0:
-        line = line.strip("prol.")
-        line = int(line)
         lineNum = line
     elif act == 1:
         if scene == 1:
@@ -789,8 +785,6 @@ def persNum(act, scene, line):
 def poenNum(act, scene, line):
     lineNum = 0
     if act == 0:
-        line = line.strip("prol.")
-        line = int(line)
         lineNum = line
     elif act == 1:
         if scene == 1:
@@ -839,8 +833,6 @@ def poenNum(act, scene, line):
 def psNum(act, scene, line):
     lineNum = 0
     if act == 0:
-        line = line.strip("prol.")
-        line = int(line)
         lineNum = line
     elif act == 1:
         if scene == 1:
@@ -892,8 +884,6 @@ def psNum(act, scene, line):
 def rudNum(act, scene, line):
     lineNum = 0
     if act == 0:
-        line = line.strip("prol.")
-        line = int(line)
         lineNum = line
     elif act == 1:
         if scene == 1:
@@ -1004,8 +994,6 @@ def stichNum(act, scene, line):
 def trinNum(act, scene, line):
     lineNum = 0
     if act == 0:
-        line = line.strip("prol.")
-        line = int(line)
         lineNum = line
     elif act == 1:
         if scene == 1:
@@ -1045,8 +1033,6 @@ def trinNum(act, scene, line):
 def trucNum(act, scene, line):
     lineNum = 0
     if act == 0:
-        line = line.strip("prol.")
-        line = int(line)
         lineNum = line
     elif act == 1:
         if scene == 1:
@@ -1108,3 +1094,5 @@ def trucNum(act, scene, line):
 
 # then replace end of n attribute for perseus link (that is, the num:num:num) with the line number
 # and add parenthetical with line number to end of bibl text (that is: "num, num, num (num)")
+
+main()
