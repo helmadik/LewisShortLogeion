@@ -13,9 +13,9 @@ import re
 def main():
     file_name = input("Which file would you like to resolve?\n")
     file = md.parse(file_name)
-    print( file.nodeName )
+    #print( file.nodeName )
 
-    print(file.firstChild.tagName)
+    #print(file.firstChild.tagName)
 
     bibliography = file.getElementsByTagName( "bibl" )
 
@@ -30,7 +30,7 @@ def main():
         play = apToks[2]
         newLine = 0
         if author == '0119':
-            print(tokens)
+            #print(tokens)
             if len(tokens) == 6:
                 act = int(re.sub(r'[^0-9]', '', tokens[3]))
                 scene = int(tokens[4])
@@ -50,64 +50,64 @@ def main():
                 else:
                     line = int(re.sub(r'[^0-9]', '', tokens[3]))
             if play == '001':
-                print('Am. or Amph., Amphitruo.')
+                #print('Am. or Amph., Amphitruo.')
                 newLine = amphNum(act, scene, line)
             elif play == '002':
-                print('As. or Asin., Asinaria.')
+                #print('As. or Asin., Asinaria.')
                 newLine = asNum(act, scene, line)
             elif play == '003':
-                print('Aul., Aulularia.')
+                #print('Aul., Aulularia.')
                 newLine = aulNum(act, scene, line)
             elif play == '004':
-                print('Bacch., Bacchides.')
+                #print('Bacch., Bacchides.')
                 newLine = baccNum(act, scene, line)
             elif play == '005':
-                print('Capt., Captivi.')
+                #print('Capt., Captivi.')
                 newLine = captNum(act, scene, line)
             elif play == '006':
-                print('Cas., Casina.')
+                #print('Cas., Casina.')
                 newLine = casNum(act, scene, line)
             elif play == '007':
-                print('Cist., Cistellaria.')
+                #print('Cist., Cistellaria.')
                 newLine = cistNum(act, scene, line)
             elif play == '008':
-                print('Curc., Curculio.')
+                #print('Curc., Curculio.')
                 newLine = curcNum(act, scene, line)
             elif play == '009':
-                print('Ep. or Epid., Epidicus.')
+                #print('Ep. or Epid., Epidicus.')
                 newLine = epidNum(act, scene, line)
             elif play == '010':
-                print('Men., Menaechmi.')
+                #print('Men., Menaechmi.')
                 newLine = menNum(act, scene, line)
             elif play == '011':
-                print('Merc., Mercator.')
+                #print('Merc., Mercator.')
                 newLine = mercNum(act, scene, line)
             elif play == '012':
-                print('Mil., Miles Gloriosus.')
+                #print('Mil., Miles Gloriosus.')
                 newLine = milNum(act, scene, line)
             elif play == '013':
-                print('Most., Mostellaria.')
+                #print('Most., Mostellaria.')
                 newLine = mostNum(act, scene, line)
             elif play == '014':
-                print('Pers., Persa.')
+                #print('Pers., Persa.')
                 newLine = persNum(act, scene, line)
             elif play == '015':
-                print('Poen., Poenulus.')
+                #print('Poen., Poenulus.')
                 newLine = poenNum(act, scene, line)
             elif play == '016':
-                print('Ps., Pseudolus.')
+                #print('Ps., Pseudolus.')
                 newLine = psNum(act, scene, line)
             elif play == '017':
-                print('Rud., Rudens.')
+                #print('Rud., Rudens.')
                 newLine = rudNum(act, scene, line)
             elif play == '018':
-                print('Stich., Stichus.')
+                #print('Stich., Stichus.')
                 newLine = stichNum(act, scene, line)
             elif play == '019':
-                print('Trin., Trinummus.')
+                #print('Trin., Trinummus.')
                 newLine = trinNum(act, scene, line)
             elif play == '020':
-                print('Truc., Truculentus.')
+                #print('Truc., Truculentus.')
                 newLine = trucNum(act, scene, line)
             # switch play title
             # parse act/scene/line
@@ -115,14 +115,14 @@ def main():
             # update link and entry text
     
             newlink = tokens[0] + ':' + tokens[1] + ':' + tokens[2] + ':' + str(newLine)
-            print(newlink)
+            #print(newlink)
             entry.setAttribute("n", newlink)
-            print(entry.getAttribute("n"))
-            print(entry.childNodes[-1].data)
+            #print(entry.getAttribute("n"))
+            #print(entry.childNodes[-1].data)
             newdata = entry.childNodes[-1].data + ' (' + str(newLine) + ')'
-            print(newdata)
+            #print(newdata)
             entry.childNodes[-1].data = newdata
-            print(entry.childNodes[-1].data)
+            #print(entry.childNodes[-1].data)
 
     with open(file_name, "w") as f:
         f.write(file.toxml())
