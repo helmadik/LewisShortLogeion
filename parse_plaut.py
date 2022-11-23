@@ -1029,6 +1029,8 @@ def trinNum(act, scene, line):
             lineNum = line + 275
         elif scene == 3:
             lineNum = line + 391
+        elif scene == 4:
+            lineNum = line + 401
     elif act == 3:
         if scene == 1:
             lineNum = line + 601
