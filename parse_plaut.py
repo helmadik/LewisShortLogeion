@@ -656,6 +656,8 @@ def mercNum(act, scene, line):
             lineNum = line + 740
         elif scene == 5:
             lineNum = line + 802
+        elif scene == 6:
+            lineNum = line + 816
     elif act == 5:
         if scene == 1:
             lineNum = line + 829
