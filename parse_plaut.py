@@ -173,6 +173,8 @@ def amphNum(act, scene, line):
             lineNum = line + 1052
         elif scene == 2:
             lineNum = line + 1130
+        elif scene == 3:
+            lineNum = line + 1143
     return lineNum
 
 def asNum(act, scene, line):
