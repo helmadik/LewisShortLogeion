@@ -900,6 +900,8 @@ def psNum(act, scene, line):
             lineNum = line + 1062
         elif scene == 7:
             lineNum = line + 1102
+        elif scene == 8:
+            lineNum = line + 1237
     elif act == 5:
         if scene == 1:
             lineNum = line + 1245
