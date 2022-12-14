@@ -22,7 +22,7 @@ def main():
     for entry in bibliography:
         link = entry.getAttribute("n")
         tokens = link.split(':')
-        if len(tokens) < 4:
+        if len(tokens) < 5:
             continue
         authPlay = tokens[2]
         apToks = authPlay.split(',')
@@ -43,14 +43,7 @@ def main():
                 else:
                     act = int(re.sub(r'[^0-9]', '', tokens[3]))
                 scene = 0
-                line = int(re.sub(r'[^0-9]', '', tokens[4]))
-            elif len(tokens) == 4:
-                act = 0
-                scene = 0
-                if tokens[3] == '':
-                    continue
-                else:
-                    line = int(re.sub(r'[^0-9]', '', tokens[3]))
+                line = int(tokens[4])
             if play == '001':
                 #print('Am. or Amph., Amphitruo.')
                 newLine = amphNum(act, scene, line)
@@ -115,8 +108,16 @@ def main():
             # parse act/scene/line
             # call helper function that converts line number for a given play
             # update link and entry text
-    
-            newlink = tokens[0] + ':' + tokens[1] + ':' + tokens[2] + ':' + str(newLine)
+
+            if newLine == 0:
+                actSceneLine = ""
+                if len(tokens) == 6:
+                    actSceneLine = tokens[3] + ':' + tokens[4] + ':' + tokens[5]
+                elif len(tokens) == 5:
+                    actSceneLine = tokens[3] + ':' + tokens[4]
+                newlink = tokens[0] + ':' + tokens[1] + ':' + tokens[2] + ':' + actSceneLine
+            else:
+                newlink = tokens[0] + ':' + tokens[1] + ':' + tokens[2] + ':' + str(newLine)
             #print(newlink)
             entry.setAttribute("n", newlink)
             #print(entry.getAttribute("n"))
@@ -134,7 +135,10 @@ def main():
     
     another = input("Would you like to parse another file? Type YES if so.\n")
     if another == 'YES':
+        print("Sounds great.")
         main()
+    else:
+        print("Thank you. Goodbye!")
 
 def amphNum(act, scene, line):
     lineNum = 0
