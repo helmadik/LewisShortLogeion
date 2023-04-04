@@ -13,13 +13,10 @@ import re
 def main():
     file_name = input("Which file would you like to resolve?\n")
     file = md.parse(file_name)
-    #print( file.nodeName )
-
-    #print(file.firstChild.tagName)
 
     bibliography = file.getElementsByTagName( "bibl" )
 
-    for entry in bibliography:
+    for entry in bibliography: # create a new file instead of editing the old one with a new extension
         link = entry.getAttribute("n")
         tokens = link.split(':')
         if len(tokens) < 5:
@@ -33,101 +30,100 @@ def main():
         newLine = 0
         if author == '0119':
             #print(tokens)
-            if len(tokens) == 6:
-                act = int(re.sub(r'[^0-9]', '', tokens[3]))
-                scene = int(re.sub(r'[^0-9]', '', tokens[4]))
-                line = int(re.sub(r'[^0-9]', '', tokens[5]))
-            elif len(tokens) == 5:
-                if re.fullmatch(r'[^0-9]', tokens[3]) == None:
+            if len(tokens) == 5:
+                if re.fullmatch(r'[^0-9]', tokens[3]) == None: # still unclear 
                     act = 0
                 else:
                     act = int(re.sub(r'[^0-9]', '', tokens[3]))
-                scene = 0
                 line = int(tokens[4])
-            if play == '001':
-                #print('Am. or Amph., Amphitruo.')
-                newLine = amphNum(act, scene, line)
-            elif play == '002':
-                #print('As. or Asin., Asinaria.')
-                newLine = asNum(act, scene, line)
-            elif play == '003':
-                #print('Aul., Aulularia.')
-                newLine = aulNum(act, scene, line)
-            elif play == '004':
-                #print('Bacch., Bacchides.')
-                newLine = baccNum(act, scene, line)
-            elif play == '005':
-                #print('Capt., Captivi.')
-                newLine = captNum(act, scene, line)
-            elif play == '006':
-                #print('Cas., Casina.')
-                newLine = casNum(act, scene, line)
-            elif play == '007':
-                #print('Cist., Cistellaria.')
-                newLine = cistNum(act, scene, line)
-            elif play == '008':
-                #print('Curc., Curculio.')
-                newLine = curcNum(act, scene, line)
-            elif play == '009':
-                #print('Ep. or Epid., Epidicus.')
-                newLine = epidNum(act, scene, line)
-            elif play == '010':
-                #print('Men., Menaechmi.')
-                newLine = menNum(act, scene, line)
-            elif play == '011':
-                #print('Merc., Mercator.')
-                newLine = mercNum(act, scene, line)
-            elif play == '012':
-                #print('Mil., Miles Gloriosus.')
-                newLine = milNum(act, scene, line)
-            elif play == '013':
-                #print('Most., Mostellaria.')
-                newLine = mostNum(act, scene, line)
-            elif play == '014':
-                #print('Pers., Persa.')
-                newLine = persNum(act, scene, line)
-            elif play == '015':
-                #print('Poen., Poenulus.')
-                newLine = poenNum(act, scene, line)
-            elif play == '016':
-                #print('Ps., Pseudolus.')
-                newLine = psNum(act, scene, line)
-            elif play == '017':
-                #print('Rud., Rudens.')
-                newLine = rudNum(act, scene, line)
-            elif play == '018':
-                #print('Stich., Stichus.')
-                newLine = stichNum(act, scene, line)
-            elif play == '019':
-                #print('Trin., Trinummus.')
-                newLine = trinNum(act, scene, line)
-            elif play == '020':
-                #print('Truc., Truculentus.')
-                newLine = trucNum(act, scene, line)
-            # switch play title
-            # parse act/scene/line
-            # call helper function that converts line number for a given play
-            # update link and entry text
+                #print("act:", act)
+                scene = 0 
+                newLine = int(tokens[4])
+                #print("scene", scene)
+                #print("line:", line)
+                #print("tokens before editing:", tokens)
+                #print(act, scene, line, "tokens:", len(tokens))
+            elif len(tokens) == 6:
+                act = int(re.sub(r'[^0-9]', '', tokens[3]))
+                scene = int(re.sub(r'[^0-9]', '', tokens[4]))
+                line = int(re.sub(r'[^0-9]', '', tokens[5]))
+                if play == '001':
+                    #print('Am. or Amph., Amphitruo.')
+                    newLine = amphNum(act, scene, line)
+                elif play == '002':
+                    #print('As. or Asin., Asinaria.')
+                    newLine = asNum(act, scene, line)
+                elif play == '003':
+                    #print('Aul., Aulularia.')
+                    newLine = aulNum(act, scene, line)
+                elif play == '004':
+                    #print('Bacch., Bacchides.')
+                    newLine = baccNum(act, scene, line)
+                elif play == '005':
+                    #print('Capt., Captivi.')
+                    newLine = captNum(act, scene, line)
+                elif play == '006':
+                    #print('Cas., Casina.')
+                    newLine = casNum(act, scene, line)
+                elif play == '007':
+                    #print('Cist., Cistellaria.')
+                    newLine = cistNum(act, scene, line)
+                elif play == '008':
+                    #print('Curc., Curculio.') PROBLEM
+                    newLine = curcNum(act, scene, line)
+                elif play == '009':
+                    #print('Ep. or Epid., Epidicus.')
+                    newLine = epidNum(act, scene, line)
+                elif play == '010':
+                    #print('Men., Menaechmi.')
+                    newLine = menNum(act, scene, line)
+                elif play == '011':
+                    #print('Merc., Mercator.')
+                    newLine = mercNum(act, scene, line)
+                elif play == '012':
+                    #print('Mil., Miles Gloriosus.')
+                    newLine = milNum(act, scene, line)
+                elif play == '013':
+                    #print('Most., Mostellaria.')
+                    newLine = mostNum(act, scene, line)
+                elif play == '014':
+                    #print('Pers., Persa.')
+                    newLine = persNum(act, scene, line)
+                elif play == '015':
+                    #print('Poen., Poenulus.')
+                    newLine = poenNum(act, scene, line)
+                elif play == '016':
+                    #print('Ps., Pseudolus.')
+                    newLine = psNum(act, scene, line)
+                elif play == '017':
+                    #print('Rud., Rudens.')
+                    newLine = rudNum(act, scene, line)
+                elif play == '018':
+                    #print('Stich., Stichus.')
+                    newLine = stichNum(act, scene, line)
+                elif play == '019':
+                    #print('Trin., Trinummus.')
+                    newLine = trinNum(act, scene, line)
+                elif play == '020':
+                    #print('Truc., Truculentus.')
+                    newLine = trucNum(act, scene, line)
 
-            if newLine == 0:
-                actSceneLine = ""
+            if newLine == 0: # if the function didn't return anything OR there is no matching play numbe 
+                actSceneLine = "" 
                 if len(tokens) == 6:
                     actSceneLine = tokens[3] + ':' + tokens[4] + ':' + tokens[5]
-                elif len(tokens) == 5:
-                    actSceneLine = tokens[3] + ':' + tokens[4]
-                newlink = tokens[0] + ':' + tokens[1] + ':' + tokens[2] + ':' + actSceneLine
-            else:
-                newlink = tokens[0] + ':' + tokens[1] + ':' + tokens[2] + ':' + str(newLine)
-            #print(newlink)
+                    #print("idk what to do in this situation -- prob a fragmentary piece")
+                newLine = line
+                #newlink = tokens[0] + ':' + tokens[1] + ':' + tokens[2] + ':' + str(line)#actSceneLine
+                # i don't understand why this was here in the first place
+            newlink = tokens[0] + ':' + tokens[1] + ':' + tokens[2] + ':' + str(newLine)            
+            #print("only newlink creation: ", newlink)
             entry.setAttribute("n", newlink)
-            #print(entry.getAttribute("n"))
-            #print(entry.childNodes[-1].data)
-            if entry.childNodes[-1].nodeType != md.Node.TEXT_NODE:
+            #print("---------------------")
+            if entry.childNodes[-1].nodeType != md.Node.TEXT_NODE: # if it's not a number
                 continue
             newdata = entry.childNodes[-1].data + ' (' + str(newLine) + ')'
-            #print(newdata)
             entry.childNodes[-1].data = newdata
-            #print(entry.childNodes[-1].data)
 
     with open(file_name, "w") as f:
         f.write(file.toxml())
@@ -141,10 +137,9 @@ def main():
         print("Thank you. Goodbye!")
 
 def amphNum(act, scene, line):
+    # each of these functions is a different play
     lineNum = 0
-    if act == 0:
-        lineNum = line
-    elif act == 1:
+    if act == 1:
         if scene == 1:
             lineNum = line + 152
         elif scene == 2:
@@ -183,9 +178,7 @@ def amphNum(act, scene, line):
 
 def asNum(act, scene, line):
     lineNum = 0
-    if act == 0:
-        lineNum = line
-    elif act == 1:
+    if act == 1:
         if scene == 1:
             lineNum = line + 15
         elif scene == 2:
@@ -222,9 +215,7 @@ def asNum(act, scene, line):
 
 def aulNum(act, scene, line):
     lineNum = 0
-    if act == 0:
-        lineNum = line
-    elif act == 1:
+    if act == 1:
         if scene == 1:
             lineNum = line + 39
         elif scene == 2:
@@ -288,9 +279,7 @@ def aulNum(act, scene, line):
 
 def baccNum(act, scene, line):
     lineNum = 0
-    if act == 0:
-        lineNum = line
-    elif act == 1:
+    if act == 1:
         if scene == 1:
             lineNum = line + 34
         elif scene == 2:
@@ -347,9 +336,7 @@ def baccNum(act, scene, line):
 
 def captNum(act, scene, line):
     lineNum = 0
-    if act == 0:
-        lineNum = line
-    elif act == 1:
+    if act == 1:
         if scene == 1:
             lineNum = line + 68
         elif scene == 2:
@@ -394,10 +381,8 @@ def captNum(act, scene, line):
 
 def casNum(act, scene, line):
     lineNum = 0
-    if act == 0:
-        lineNum = line
-    elif act == 1:
-        lineNum = line + 88
+    if act == 1:
+        lineNum = line + 88 # very necessary
     elif act == 2:
         if scene == 1:
             lineNum = line + 143
@@ -573,9 +558,8 @@ def epidNum(act, scene, line):
 
 def menNum(act, scene, line):
     lineNum = 0
-    if act == 0:
-        lineNum = line
-    elif act == 1:
+    # is there a reason why some check for act == 0, and some dont
+    if act == 1:
         if scene == 1:
             lineNum = line + 76
         elif scene == 2:
@@ -814,9 +798,7 @@ def persNum(act, scene, line):
 
 def poenNum(act, scene, line):
     lineNum = 0
-    if act == 0:
-        lineNum = line
-    elif act == 1:
+    if act == 1:
         if scene == 1:
             lineNum = line + 128
         elif scene == 2:
@@ -862,9 +844,7 @@ def poenNum(act, scene, line):
 
 def psNum(act, scene, line):
     lineNum = 0
-    if act == 0:
-        lineNum = line
-    elif act == 1:
+    if act == 1:
         if scene == 1:
             lineNum = line + 2
         elif scene == 2:
@@ -915,9 +895,7 @@ def psNum(act, scene, line):
 
 def rudNum(act, scene, line):
     lineNum = 0
-    if act == 0:
-        lineNum = line
-    elif act == 1:
+    if act == 1:
         if scene == 1:
             lineNum = line + 82
         elif scene == 2:
@@ -1025,9 +1003,7 @@ def stichNum(act, scene, line):
 
 def trinNum(act, scene, line):
     lineNum = 0
-    if act == 0:
-        lineNum = line
-    elif act == 1:
+    if act == 1:
         if scene == 1:
             lineNum = line + 22
         elif scene == 2:
@@ -1066,9 +1042,7 @@ def trinNum(act, scene, line):
 
 def trucNum(act, scene, line):
     lineNum = 0
-    if act == 0:
-        lineNum = line
-    elif act == 1:
+    if act == 1:
         if scene == 1:
             lineNum = line + 21
         elif scene == 2:
@@ -1108,6 +1082,7 @@ def trucNum(act, scene, line):
         lineNum = line + 892
     return lineNum
 
+# this is original pseudocode 
 # input file
 
 # parse file as xml
@@ -1116,7 +1091,7 @@ def trucNum(act, scene, line):
 
 # for each bibl tag find author subtag
 
-# check if value == to "Plaut."
+# check if value == to "Plaut." DONT NEED 
 # find <author>Plaut.</author>
 # get next <title> (text btween) <title></title> after <author>
 # get act/scene/line number right after </title> until </bib>
