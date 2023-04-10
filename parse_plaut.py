@@ -1,6 +1,8 @@
-import xml.dom.minidom as md
+import xml.dom.minidom as md 
 import io
 import re
+import os
+
 # Script to resolve antiquated line identification scheme in Plautus references.
 # Function should take in a file, read it (prob should use helper function),
 # and then RegEx find every <bibl> tag with an author subtag of "Plaut."
@@ -10,13 +12,25 @@ import re
 # add a parenthetical with the actual line number to the citation to go from
 # 5, 2, 41 to 5, 2, 41 (912).
 
-def main():
-    file_name = input("Which file would you like to resolve?\n")
-    file = md.parse(file_name)
+def main(filenum = 1, reset=False):
+    if filenum < 10:
+        file_name = "latindico0" + str(filenum) + ".xml"
+        copy_name = "linenum_latindico0" + str(filenum) + ".xml"
+    else:
+        file_name = "latindico" + str(filenum) + ".xml"
+        copy_name = "linenum_latindico" + str(filenum) + ".xml"
+    
+    # print("removing", copy_name, "...") #for testing
+    # os.system(f"rm {copy_name}")
+    
+    copy = os.system(f"cp {file_name} {copy_name}")
+    file = md.parse(copy_name)
+
+    print("parsing ", file_name, "...")
 
     bibliography = file.getElementsByTagName( "bibl" )
 
-    for entry in bibliography: # create a new file instead of editing the old one with a new extension
+    for entry in bibliography: 
         link = entry.getAttribute("n")
         tokens = link.split(':')
         if len(tokens) < 5:
@@ -29,115 +43,117 @@ def main():
         play = apToks[2]
         newLine = 0
         if author == '0119':
-            #print(tokens)
             if len(tokens) == 5:
-                if re.fullmatch(r'[^0-9]', tokens[3]) == None: # still unclear 
-                    act = 0
+                #if re.fullmatch(r'[^0-9]', tokens[3]) == None: 
+                if re.match(r'^[0-9]+$', tokens[3]) == None:
+                    print("fragments", tokens[3])
+                    continue
                 else:
-                    act = int(re.sub(r'[^0-9]', '', tokens[3]))
-                line = int(tokens[4])
-                #print("act:", act)
-                scene = 0 
-                newLine = int(tokens[4])
-                #print("scene", scene)
-                #print("line:", line)
-                #print("tokens before editing:", tokens)
-                #print(act, scene, line, "tokens:", len(tokens))
+                    #act = int(re.sub(r'[^0-9]', '', tokens[3]))
+                    act = int(tokens[3])
+                    line = int(tokens[4])
+                    scene = 1 
+                
             elif len(tokens) == 6:
                 act = int(re.sub(r'[^0-9]', '', tokens[3]))
                 scene = int(re.sub(r'[^0-9]', '', tokens[4]))
                 line = int(re.sub(r'[^0-9]', '', tokens[5]))
-                if play == '001':
-                    #print('Am. or Amph., Amphitruo.')
-                    newLine = amphNum(act, scene, line)
-                elif play == '002':
-                    #print('As. or Asin., Asinaria.')
-                    newLine = asNum(act, scene, line)
-                elif play == '003':
-                    #print('Aul., Aulularia.')
-                    newLine = aulNum(act, scene, line)
-                elif play == '004':
-                    #print('Bacch., Bacchides.')
-                    newLine = baccNum(act, scene, line)
-                elif play == '005':
-                    #print('Capt., Captivi.')
-                    newLine = captNum(act, scene, line)
-                elif play == '006':
-                    #print('Cas., Casina.')
-                    newLine = casNum(act, scene, line)
-                elif play == '007':
-                    #print('Cist., Cistellaria.')
-                    newLine = cistNum(act, scene, line)
-                elif play == '008':
-                    #print('Curc., Curculio.') PROBLEM
-                    newLine = curcNum(act, scene, line)
-                elif play == '009':
-                    #print('Ep. or Epid., Epidicus.')
-                    newLine = epidNum(act, scene, line)
-                elif play == '010':
-                    #print('Men., Menaechmi.')
-                    newLine = menNum(act, scene, line)
-                elif play == '011':
-                    #print('Merc., Mercator.')
-                    newLine = mercNum(act, scene, line)
-                elif play == '012':
-                    #print('Mil., Miles Gloriosus.')
-                    newLine = milNum(act, scene, line)
-                elif play == '013':
-                    #print('Most., Mostellaria.')
-                    newLine = mostNum(act, scene, line)
-                elif play == '014':
-                    #print('Pers., Persa.')
-                    newLine = persNum(act, scene, line)
-                elif play == '015':
-                    #print('Poen., Poenulus.')
-                    newLine = poenNum(act, scene, line)
-                elif play == '016':
-                    #print('Ps., Pseudolus.')
-                    newLine = psNum(act, scene, line)
-                elif play == '017':
-                    #print('Rud., Rudens.')
-                    newLine = rudNum(act, scene, line)
-                elif play == '018':
-                    #print('Stich., Stichus.')
-                    newLine = stichNum(act, scene, line)
-                elif play == '019':
-                    #print('Trin., Trinummus.')
-                    newLine = trinNum(act, scene, line)
-                elif play == '020':
-                    #print('Truc., Truculentus.')
-                    newLine = trucNum(act, scene, line)
-
-            if newLine == 0: # if the function didn't return anything OR there is no matching play numbe 
-                actSceneLine = "" 
-                if len(tokens) == 6:
-                    actSceneLine = tokens[3] + ':' + tokens[4] + ':' + tokens[5]
-                    #print("idk what to do in this situation -- prob a fragmentary piece")
-                newLine = line
-                #newlink = tokens[0] + ':' + tokens[1] + ':' + tokens[2] + ':' + str(line)#actSceneLine
-                # i don't understand why this was here in the first place
-            newlink = tokens[0] + ':' + tokens[1] + ':' + tokens[2] + ':' + str(newLine)            
-            #print("only newlink creation: ", newlink)
+            #maybe add enums for these instead
+            if play == '001':
+                #print('Am. or Amph., Amphitruo.')
+                newLine = amphNum(act, scene, line)
+            elif play == '002':
+                #print('As. or Asin., Asinaria.')
+                newLine = asNum(act, scene, line)
+            elif play == '003':
+                #print('Aul., Aulularia.')
+                newLine = aulNum(act, scene, line)
+            elif play == '004':
+                #print('Bacch., Bacchides.')
+                newLine = baccNum(act, scene, line)
+            elif play == '005':
+                #print('Capt., Captivi.')
+                newLine = captNum(act, scene, line)
+            elif play == '006':
+                #print('Cas., Casina.')
+                newLine = casNum(act, scene, line)
+            elif play == '007':
+                #print('Cist., Cistellaria.')
+                # something weird with the numbering becauese in act 3, it only has one scene
+                newLine = cistNum(act, scene, line) 
+            elif play == '008':
+                #print('Curc., Curculio.') PROBLEM
+                newLine = curcNum(act, scene, line)
+            elif play == '009':
+                #print('Ep. or Epid., Epidicus.')
+                newLine = epidNum(act, scene, line)
+            elif play == '010':
+                #print('Men., Menaechmi.')
+                newLine = menNum(act, scene, line)
+            elif play == '011':
+                #print('Merc., Mercator.')
+                newLine = mercNum(act, scene, line)
+            elif play == '012':
+                #print('Mil., Miles Gloriosus.')
+                newLine = milNum(act, scene, line)
+            elif play == '013':
+                #print('Most., Mostellaria.')
+                newLine = mostNum(act, scene, line)
+            elif play == '014':
+                #print('Pers., Persa.')
+                newLine = persNum(act, scene, line)
+            elif play == '015':
+                #print('Poen., Poenulus.')
+                newLine = poenNum(act, scene, line)
+            elif play == '016':
+                #print('Ps., Pseudolus.')
+                newLine = psNum(act, scene, line)
+            elif play == '017':
+                #print('Rud., Rudens.')
+                newLine = rudNum(act, scene, line)
+            elif play == '018':
+                #print('Stich., Stichus.')
+                newLine = stichNum(act, scene, line)
+            elif play == '019':
+                #print('Trin., Trinummus.')
+                newLine = trinNum(act, scene, line)
+            elif play == '020':
+                #print('Truc., Truculentus.')
+                newLine = trucNum(act, scene, line)
+            
+            if newLine == 0: 
+                # if there is no play, act, or scene combo like this
+                newLine = "badcombo"
+                
+                #actSceneLine = "" 
+                #if len(tokens) == 6:
+                    #actSceneLine = tokens[3] + ':' + tokens[4] + ':' + tokens[5]
+                    # idk what to do in this situation -- prob a fragmentary piece
+                
+            newlink = tokens[0] + ':' + tokens[1] + ':' + tokens[2] + ':' + str(newLine)           
             entry.setAttribute("n", newlink)
-            #print("---------------------")
-            if entry.childNodes[-1].nodeType != md.Node.TEXT_NODE: # if it's not a number
+            if entry.childNodes[-1].nodeType != md.Node.TEXT_NODE: 
                 continue
             newdata = entry.childNodes[-1].data + ' (' + str(newLine) + ')'
             entry.childNodes[-1].data = newdata
 
-    with open(file_name, "w") as f:
+    with open(copy_name, "w") as f:
         f.write(file.toxml())
         f.close()
     
-    another = input("Would you like to parse another file? Type YES if so.\n")
-    if another == 'YES':
-        print("Sounds great.")
-        main()
+    if filenum != 25:
+        if filenum == 9:
+            main(filenum + 2)
+        #elif filenum == 16: # testing this file w/ a fragment
+            #print("done")
+        else: 
+            main(filenum + 1)
     else:
-        print("Thank you. Goodbye!")
+        print("completed")
+
+
 
 def amphNum(act, scene, line):
-    # each of these functions is a different play
     lineNum = 0
     if act == 1:
         if scene == 1:
@@ -274,7 +290,10 @@ def aulNum(act, scene, line):
         elif scene == 10:
             lineNum = line + 730
     elif act == 5:
-        lineNum = line + 807
+        if scene == 1:
+            lineNum = line + 807
+        else:
+            print(f"error! there is no scene {scene} in act 5 of Aulularia")
     return lineNum
 
 def baccNum(act, scene, line):
@@ -382,7 +401,10 @@ def captNum(act, scene, line):
 def casNum(act, scene, line):
     lineNum = 0
     if act == 1:
-        lineNum = line + 88 # very necessary
+        if scene == 1:
+            lineNum = line + 88
+        else:
+            print(f"error! there is no scene {scene} in act 1 of Casina")
     elif act == 2:
         if scene == 1:
             lineNum = line + 143
@@ -472,7 +494,10 @@ def cistNum(act, scene, line):
             lineNum = line + 542
 	#3	1	631
     elif act == 3:
-        lineNum = line + 630
+        if scene == 1:
+            lineNum = line + 630
+        else:
+            print(f"error! there is no scene {scene} in act 3 of Cistellaria")
 	#4	1	653
 	#4	2	671
     elif act == 4:
@@ -482,7 +507,10 @@ def cistNum(act, scene, line):
             lineNum = line + 670
 	#5	1	774
     elif act == 5:
-        lineNum = line + 773
+        if scene == 1:
+            lineNum = line + 773
+        else:
+            print(f"error! there is no scene {scene} in act 5 of Cistellaria")
     return lineNum
 
 def curcNum(act, scene, line):
@@ -502,7 +530,10 @@ def curcNum(act, scene, line):
         elif scene == 3:
             lineNum = line + 279
     elif act == 3:
-        lineNum = line + 370
+        if scene == 1:
+            lineNum = line + 370
+        else:
+            print(f"error! there is no scene {scene} in act 3 of Curculio")
     elif act == 4:
         if scene == 1:
             lineNum = line + 461
@@ -558,7 +589,6 @@ def epidNum(act, scene, line):
 
 def menNum(act, scene, line):
     lineNum = 0
-    # is there a reason why some check for act == 0, and some dont
     if act == 1:
         if scene == 1:
             lineNum = line + 76
@@ -662,7 +692,10 @@ def mercNum(act, scene, line):
 def milNum(act, scene, line):
     lineNum = 0
     if act == 1:
-        lineNum = line
+        if scene == 1:
+            lineNum = line
+        else:
+            print(f"error! there is no scene {scene} in act 1 of Miles Gloriosus")
     elif act == 2:
         if scene == 1:
             lineNum = line + 78
@@ -703,7 +736,10 @@ def milNum(act, scene, line):
         elif scene == 9:
             lineNum = line + 1377
     elif act == 5:
-        lineNum = line + 1393
+        if scene == 1:
+            lineNum = line + 1393
+        else:
+            print(f"error! there is no scene {scene} in act 5 of Miles Gloriosus")
     return lineNum
 
 def mostNum(act, scene, line):
@@ -806,7 +842,10 @@ def poenNum(act, scene, line):
         elif scene == 3:
             lineNum = line + 409
     elif act == 2:
-        lineNum = line + 448
+        if scene == 1:
+            lineNum = line + 448
+        else:
+            print(f"error! there is no scene {scene} in act 2 of Poenulus")
     elif act == 3:
         if scene == 1:
             lineNum = line + 503
@@ -1079,7 +1118,10 @@ def trucNum(act, scene, line):
         elif scene == 4:
             lineNum = line + 853
     elif act == 5:
-        lineNum = line + 892
+        if scene == 1:
+            lineNum = line + 892
+        else:
+            print(f"error! there is no scene {scene} in act 5 of Truculentus")
     return lineNum
 
 # this is original pseudocode 
