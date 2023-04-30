@@ -1,125 +1,83 @@
-import xml.dom.minidom as md 
-import io
 import re
-import os
+# script for a user input service that takes an act, scene, line
+# combination of a particular Plautus work and returns the 
+# cumulative line number. Useful for accessing lines without having
+# to search for it themselves.
 
-# Script to resolve antiquated line identification scheme in Plautus references.
-# Function should take in a file, read it (prob should use helper function),
-# and then RegEx find every <bibl> tag with an author subtag of "Plaut."
-# read the title of the play, check it against the act-scene values & calculate
-# the line number (helper function). Then use that to update the Perseus link from
-# e.g. Perseus:abo:phi,0119,006:5:2:41 to Perseus:abo:phi,0119,006:912. Also
-# add a parenthetical with the actual line number to the citation to go from
-# 5, 2, 41 to 5, 2, 41 (912).
+# idk what your database looks like, but perhaps you could link/incorporate
+# it there? otherwise idk how to put it in a webpage
 
-def main(filenum = 1, reset=False):
-    # assigning upcoming filename for continuous parsing
-    if filenum < 10:
-        file_name = "latindico0" + str(filenum) + ".xml"
-        copy_name = "linenum_latindico0" + str(filenum) + ".xml"
+def main():
+    print('Welcome! Please enter the Plautus play:')
+    play = input()
+    # maybe a dict of all the plays and their numbers? or number or code?
+    print("Enter the act:scene:line that you wish to convert. Note: if there is no scene in this act, please enter as act:line")
+    combo = input()
+    # assert that they are all numbers
+
+    tokens = combo.split(':')
+    if len(tokens) < 2:
+        print("Please enter a valid act scene line combo.")
+        quit()
+    elif len(tokens) == 2:
+        if re.match(r'^[0-9]+$', tokens[0]) == None:
+            print("Please enter a sufficient act scene line combo.") 
+            quit()
+        else:
+            act = int(tokens[0])
+            line = int(tokens[1])
+            scene = 1
+    elif len(tokens) == 3:
+        #act = int(re.sub(r'[^0-9]', '', tokens[0]))
+        act = int(tokens[0])
+        scene = int(tokens[1])
+        line = int(tokens[2])
+
+    if play == '001':
+        newLine = amphNum(act, scene, line)
+    elif play == '002':
+        newLine = asNum(act, scene, line)
+    elif play == '003':
+        newLine = aulNum(act, scene, line)
+    elif play == '004':
+        newLine = baccNum(act, scene, line)
+    elif play == '005':
+        newLine = captNum(act, scene, line)
+    elif play == '006':
+        newLine = casNum(act, scene, line)
+    elif play == '007':
+        newLine = cistNum(act, scene, line) 
+    elif play == '008':
+        newLine = curcNum(act, scene, line)
+    elif play == '009':
+        newLine = epidNum(act, scene, line)
+    elif play == '010':
+        newLine = menNum(act, scene, line)
+    elif play == '011':
+        newLine = mercNum(act, scene, line)
+    elif play == '012':
+        newLine = milNum(act, scene, line)
+    elif play == '013':
+        newLine = mostNum(act, scene, line)
+    elif play == '014':
+        newLine = persNum(act, scene, line)
+    elif play == '015':
+        newLine = poenNum(act, scene, line)
+    elif play == '016':
+        newLine = psNum(act, scene, line)
+    elif play == '017':
+        newLine = rudNum(act, scene, line)
+    elif play == '018':
+        newLine = stichNum(act, scene, line)
+    elif play == '019':
+        newLine = trinNum(act, scene, line)
+    elif play == '020':
+        newLine = trucNum(act, scene, line)
+
+    if newLine == 0:
+        print("I'm sorry, this combination does not exist in this play.")
     else:
-        file_name = "latindico" + str(filenum) + ".xml"
-        copy_name = "linenum_latindico" + str(filenum) + ".xml"
-    
-    # making a copy of the file that will be edited and stored as a new file
-    copy = os.system(f"cp {file_name} {copy_name}")
-    file = md.parse(copy_name)
-
-    print("parsing ", file_name, "...")
-
-    bibliography = file.getElementsByTagName( "bibl" )
-
-    for entry in bibliography: 
-        link = entry.getAttribute("n")
-        tokens = link.split(':')
-        if len(tokens) < 5:
-            continue
-        authPlay = tokens[2]
-        apToks = authPlay.split(',')
-        if len(apToks) < 3:
-            continue
-        author = apToks[1]
-        play = apToks[2]
-        newLine = 0
-        if author == '0119': # Plautus tag
-            if len(tokens) == 5:
-                if re.match(r'^[0-9]+$', tokens[3]) == None:
-                    print("fragments", tokens[3])
-                    continue
-                else:
-                    act = int(tokens[3])
-                    line = int(tokens[4])
-                    scene = 1 
-                
-            elif len(tokens) == 6:
-                act = int(re.sub(r'[^0-9]', '', tokens[3]))
-                scene = int(re.sub(r'[^0-9]', '', tokens[4]))
-                line = int(re.sub(r'[^0-9]', '', tokens[5]))
-            if play == '001':
-                newLine = amphNum(act, scene, line)
-            elif play == '002':
-                newLine = asNum(act, scene, line)
-            elif play == '003':
-                newLine = aulNum(act, scene, line)
-            elif play == '004':
-                newLine = baccNum(act, scene, line)
-            elif play == '005':
-                newLine = captNum(act, scene, line)
-            elif play == '006':
-                newLine = casNum(act, scene, line)
-            elif play == '007':
-                newLine = cistNum(act, scene, line) 
-            elif play == '008':
-                newLine = curcNum(act, scene, line)
-            elif play == '009':
-                newLine = epidNum(act, scene, line)
-            elif play == '010':
-                newLine = menNum(act, scene, line)
-            elif play == '011':
-                newLine = mercNum(act, scene, line)
-            elif play == '012':
-                newLine = milNum(act, scene, line)
-            elif play == '013':
-                newLine = mostNum(act, scene, line)
-            elif play == '014':
-                newLine = persNum(act, scene, line)
-            elif play == '015':
-                newLine = poenNum(act, scene, line)
-            elif play == '016':
-                newLine = psNum(act, scene, line)
-            elif play == '017':
-                newLine = rudNum(act, scene, line)
-            elif play == '018':
-                newLine = stichNum(act, scene, line)
-            elif play == '019':
-                newLine = trinNum(act, scene, line)
-            elif play == '020':
-                newLine = trucNum(act, scene, line)
-            
-            if newLine == 0: 
-                # if there is no play, act, or scene combo like this
-                newLine = "badcombo"
-                
-            newlink = tokens[0] + ':' + tokens[1] + ':' + tokens[2] + ':' + str(newLine)           
-            entry.setAttribute("n", newlink)
-            if entry.childNodes[-1].nodeType != md.Node.TEXT_NODE: 
-                continue
-            newdata = entry.childNodes[-1].data + ' (' + str(newLine) + ')'
-            entry.childNodes[-1].data = newdata
-
-    with open(copy_name, "w") as f:
-        f.write(file.toxml())
-        f.close()
-    
-    if filenum != 25:
-        if filenum == 9:
-            main(filenum + 2)
-        else: 
-            main(filenum + 1)
-    else:
-        print("completed")
-
-
+        print("Cumulative line number:", newLine)
 
 def amphNum(act, scene, line):
     lineNum = 0
@@ -1093,3 +1051,4 @@ def trucNum(act, scene, line):
     return lineNum
 
 main()
+
