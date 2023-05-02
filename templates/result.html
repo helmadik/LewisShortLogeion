@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head><br><br>
+
+<body>
+    <div>
+        <dt style = "font-size:add_size">Act {{act}}, scene {{scene}}, line {{line}} in {{play}} converts to <strong>{{lineNum}}</strong></dt>
+        <br><br>
+        <form action="/">
+            <button type="submit" class="btn btn-primary" onclick="redirect(url_for('views.enter_info'))">Convert another line</button>
+        </form>
+    </div>
+</body>
+</html>

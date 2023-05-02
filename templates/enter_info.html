@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Plautus Line Converter</h1>
+        <h3>Welcome! Please enter your act scene line combo.</h3>
+
+        {% for message in get_flashed_messages() %}
+            <div class="alert alert-warning" role="alert">
+                    <p style="color:red">{{message}}</p>
+                
+            </div>
+            
+        {% endfor %}
+
+        <form action="/" method="POST">
+            <div class="form-group">
+                <label>Act</label>
+                <input class="form-control" type="number" name="act">
+            </div><br><br>
+
+            <div class="form-group">
+                <label>Scene</label>
+                <input class="form-control" type="number" name="scene">
+            </div><br><br>
+
+            <div class="form-group">
+                <label>Line</label>
+                <input class="form-control" type="number" name="line">
+            </div><br><br>
+            
+            <select name="play" class="form-group">
+                {% for o in plays %}
+                <option value="{{o.play}}">{{o.play}}</option>
+                {% endfor %}
+            </select><br><br>
+
+            <button type="submit" class="btn btn-primary">Convert</button>
+        </form>
+
+    </div>
+
+    
+</body>
+</html>
