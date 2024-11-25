@@ -15,3 +15,5 @@ April 2023, a milestone: Thanks to Paul McKenna, Gabi Garcia, and Kasey Corra, P
 
 Because texts evolve, and there could still be errors in the references, the human-readable references still include the act-scene-line notation as well. 
 NOTE: Due to using Python xml libraries, there has been some XML normalization. I hope this does not mean trouble for any user. Just in case, the most recent version can be found in a separate repo: LewisShortLogeion_pre_Plautus..
+
+Change in annotation, Nov. 2024: certain abbreviations, marked exactly like the English glosses, have now been marked as ``<abbr>`` so that our processing can give them a different format. TLDR: L&S still rhymes with mess. 
