@@ -17,3 +17,5 @@ Because texts evolve, and there could still be errors in the references, the hum
 NOTE: Due to using Python xml libraries, there has been some XML normalization. I hope this does not mean trouble for any user. Just in case, the most recent version can be found in a separate repo: LewisShortLogeion_pre_Plautus..
 
 Change in annotation, Nov. 2024: certain abbreviations, marked exactly like the English glosses, have now been marked as ``<abbr>`` so that our processing can give them a different format. TLDR: L&S still rhymes with mess. 
+
+Users are our heroes! Petronius now has URNs (and a lot of Tacitus references have been repaired) -You'll see the difference especially if you use Diogenes or PhiloLogy. Do you have a favorite author where references are not functional? Please report them!  
