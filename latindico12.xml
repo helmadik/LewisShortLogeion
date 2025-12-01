@@ -3685,7 +3685,7 @@ Revision 1.3 2004/12/14 19:21:53 packel
 <div1 id="crossLimia" key="Limia" opt="n" orig_id="n26631"><head extent="full" lang="la" opt="n" orth_orig="Limia">Limia</head>, <itype opt="n">ae</itype>, v. Limaeas.</div1>
 
 
-<div1 id="crossLimici" key="Limici" opt="n" orig_id="n26632"><head extent="full" lang="la" opt="n" orth_orig="Limici">Limici</head>, <itype opt="n">ōrum</itype>, <gen opt="n">m.</gen> <i>plur.</i>, <sense id="n26632.0" level="1" n="" opt="n">a people of Hispania Tarraconensis, <bibl n="Perseus:abo:phi,0978,001:3:28"><author>Plin.</author> 3, 3, 4, § 28</bibl>.</sense></div1>
+<div1 id="crossLimici" key="Limici" opt="n" orig_id="n26632"><head extent="full" lang="la" opt="n" orth_orig="Limici">Limici</head>, <itype opt="n">ōrum</itype>, <gen opt="n">m.</gen> <abbr>plur.</abbr>, <sense id="n26632.0" level="1" n="" opt="n">a people of Hispania Tarraconensis, <bibl n="Perseus:abo:phi,0978,001:3:28"><author>Plin.</author> 3, 3, 4, § 28</bibl>.</sense></div1>
 
 
 <div1 id="crossli_mi^co^la" key="li_mi^co^la" opt="n" orig_id="n26633"><head extent="full" lang="la" opt="n" orth_orig="līmĭcŏla">limicola</head>, <itype opt="n">ae</itype>, <gen opt="n">m.</gen> <etym opt="n">limus-colo</etym>, <sense id="n26633.0" level="1" n="" opt="n"><i>a dweller in the mud</i>: <cit><quote lang="la">ostreae,</quote> <bibl default="NO"><author>Aus.</author> <title>Ep.</title> 7, 36</bibl></cit>.</sense></div1>
@@ -5461,7 +5461,7 @@ Revision 1.3 2004/12/14 19:21:53 packel
 <div1 id="crossLupi^a" key="Lupi^a" opt="n" orig_id="n27222"><head extent="full" lang="la" opt="n" orth_orig="Lupĭa">Lupia</head> (<orth extent="full" lang="la" opt="n" type="alt">Luppia</orth>), <itype opt="n">ae</itype>, <gen opt="n">m.</gen>, <sense id="n27222.0" level="1" n="" opt="n"><i>a river in the north-west of Germany</i>, now the <i>Lippe</i>, <bibl n="Perseus:abo:phi,0929,001:3:3:3"><author>Mel.</author> 3, 3, 3</bibl>; <bibl n="Perseus:abo:phi,1044,001:2:10:5"><author>Vell.</author> 2, 10, 5</bibl>; <bibl n="Perseus:abo:phi,1351,005:1:60"><author>Tac.</author> <title>A.</title> 1, 60</bibl>; <bibl n="Perseus:abo:phi,1351,005:2:7">2, 7</bibl>; <bibl n="Perseus:abo:phi,1351,004:5:22"><author>id.</author> <title>H.</title> 5, 22</bibl>.</sense></div1>
 
 
-<div1 id="crossLu_^pi^ae" key="Lu_^pi^ae" opt="n" orig_id="n27223"><head extent="full" lang="la" opt="n" orth_orig="Lū̆pĭae">Lupiae</head>, <itype opt="n">ārum</itype>, <gen opt="n">f.</gen> <i>plur.</i>, <sense id="n27223.0" level="1" n="" opt="n">a town of Calabria, <bibl default="NO"><author>Paul. Nol.</author> 30, 85</bibl>; cf. <bibl n="Perseus:abo:phi,0929,001:2:4"><author>Mel.</author> 2, 4</bibl>.</sense></div1>
+<div1 id="crossLu_^pi^ae" key="Lu_^pi^ae" opt="n" orig_id="n27223"><head extent="full" lang="la" opt="n" orth_orig="Lū̆pĭae">Lupiae</head>, <itype opt="n">ārum</itype>, <gen opt="n">f.</gen> <abbr>plur.</abbr>, <sense id="n27223.0" level="1" n="" opt="n">a town of Calabria, <bibl default="NO"><author>Paul. Nol.</author> 30, 85</bibl>; cf. <bibl n="Perseus:abo:phi,0929,001:2:4"><author>Mel.</author> 2, 4</bibl>.</sense></div1>
 
 
 <div1 id="crossLu^pi^ci_nus" key="Lu^pi^ci_nus" opt="n" orig_id="n27224"><head extent="full" lang="la" opt="n" orth_orig="Lŭpĭcīnus">Lupicinus</head>, <itype opt="n">i</itype>, <gen opt="n">m.</gen>, <sense id="n27224.0" level="1" n="" opt="n"><i>the name of a man</i>, <bibl default="NO"><author>Paul. Petr.</author> Vit. S. Mart. 1, 369</bibl>.</sense></div1>
